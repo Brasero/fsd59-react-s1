@@ -15,38 +15,30 @@
 <div id="root"></div>
 <script type="text/babel">
 
-
-
- const Numbers = () => {
-  const numbers = [
-   {
-    id: 1,
-    value: "Hello"
-   },{
-    id: 2,
-    value: "Hello"
-   },{
-    id: 3,
-    value: "Hello"
-   }
-  ]
-
+ const Wrapper = () => {
+  const numbers = [ 4, 3, 7 ];
   return (
-   <div>
+   <ul>
     {
-     numbers.map((elem) => {
-      return <p key={elem.id}>{elem.value}</p>
+     numbers.map((num, i) => {
+      return <Number num={num} key={i} />
      })
     }
-   </div>
+   </ul>
   )
+ }
+
+ const Number = (props) => {
+  const num = props.num ** 3
+
+  return <li>{num}</li>
  }
 
 
  ReactDOM.createRoot(
   document.querySelector("#root")
  ).render(
-  <Numbers />
+  <Wrapper />
  )
 </script>
 </body>
