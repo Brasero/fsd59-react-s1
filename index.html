@@ -5,19 +5,62 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <!-- Babel (compilateur pour le JSX) -->
-<!--  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>-->
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
   <title>Title</title>
+
+  <style>
+   .top {
+    color: red;
+   }
+  </style>
+
 </head>
 <body>
 <div id="root"></div>
-<script type="text/javascript">
-ReactDOM.createRoot(
- document.querySelector("#root")
-).render(
- React.createElement('div', {style: {color: "red"}},
-  React.createElement("h1", null, "Hello React"))
-)
+<script type="text/babel">
 
+ const Text = (props) => {
+  return (
+   <React.Fragment>
+    <h1>{props.title}</h1>
+    <p>{props.subtitle}</p>
+   </React.Fragment>
+  )
+ }
+
+ const Home = (props) => {
+
+  const result = 3 + 5
+
+
+  return (
+   <div className={"top"}>
+    <Text {...props} />
+    {
+     result * 2
+    }
+   </div>
+  )
+ }
+
+ class Hello extends React.Component {
+
+  render() {
+
+   return (
+    <div style={{color: "yellow"}}>
+     <h4>Toto</h4>
+    </div>
+   )
+  }
+ }
+
+
+ ReactDOM.createRoot(
+  document.querySelector("#root")
+ ).render(
+  <Home title={"Hello React"} subtitle={"Bonjour tout le monde"}/>
+ )
 </script>
 </body>
 </html>
