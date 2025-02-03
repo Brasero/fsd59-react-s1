@@ -1,6 +1,7 @@
 import './App.css'
-import TestState from "./component/TestState.jsx";
-import TestStateFunc from "./component/TestStateFunc.jsx";
+import Counter from "./component/Counter.jsx";
+
+
 
 function App() {
   
@@ -8,8 +9,8 @@ function App() {
 
   return (
     <>
-      <TestState />
-     <TestStateFunc />
+      <Counter />
+      <Counter step={5} />
     </>
   )
 }
