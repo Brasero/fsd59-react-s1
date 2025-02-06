@@ -1,0 +1,22 @@
+.Operators {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+
+  button {
+    &:active {
+      background: #213547;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button:nth-child(4) {
+    grid-column: span 2;
+  }
+
+  button:last-of-type {
+    background: orange;
+  }
+}

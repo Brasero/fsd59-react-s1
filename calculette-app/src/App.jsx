@@ -1,13 +1,11 @@
 import './App.css'
-import Calculator from "./component/Calculator.jsx";
-import Buttons from "./component/Buttons.jsx";
+import Calculator from "./component/Calculator/index.jsx";
 
 function App() {
 
   return (
     <>
       <Calculator />
-      <Buttons />
     </>
   )
 }

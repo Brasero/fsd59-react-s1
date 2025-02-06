@@ -1,43 +1,39 @@
 import {useReducer} from "react";
 
 const initialState = {
- a: "",
- b: "",
- result: "",
- error: ""
+ display: "",
+ stored: "",
+ operator: ""
 }
 
-const checkValues = (state) => {
- if (state.a === "") return false
- if (state.b === "") return false
- return true
-}
 
 const reducer = (state,action) => {
  switch(action.type) {
   
-  case "set_value":
+  case "SET_VALUE":
    return {
     ...state,
-    [action.payload.name]: action.payload.value,
-    error: ""
+    display: Number(`${state.display}${action.payload}`) // Ici, je traite state.display et action.payload comme une chaine de caractère puis la converti en une valeur numérique avec la class Number
    }
-   
-  case "calculate":
-   return checkValues(state) ? {
-    ...state,
-    a: "",
-    b: "",
-    error: "",
-    result: eval(`${state.a}${action.payload}${state.b}`)
-   } : {
-    ...state,
-    error: "Merci de remplir tous les champs avant d'effectuer un calcul"
-   }
-   
-  case "reset":
-   return initialState;
   
+  case "SET_OPERATOR":
+   return {
+    ...state,
+    display: "",
+    operator: action.payload,
+    stored: state.operator !== "" ? eval(`${state.stored}${state.operator}${state.display}`) : state.display
+   }
+  
+  case "CALC":
+   return {
+    ...state,
+    operator: "",
+    stored: "",
+    display: eval(`${state.stored}${state.operator}${state.display}`)
+   }
+  
+  case "RESET":
+   return initialState;
   
   default:
    return state;

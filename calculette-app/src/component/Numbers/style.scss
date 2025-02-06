@@ -1,0 +1,19 @@
+.Numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+
+  button {
+    &:active {
+      background: #213547;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:last-of-type {
+      grid-column: span 3;
+    }
+  }
+
+
+}
