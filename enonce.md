@@ -1,64 +1,58 @@
-# Exercice : Simulateur de quiz avec chronomètre
+#  Jeu du Morpion avec Historique des Parties
 
-## Objectif
-Construire une application de quiz où les utilisateurs répondent à des questions dans un temps imparti.
-
----
-
-## Consignes détaillées
-
-### 1. État géré avec `useReducer`
-
-#### État initial
-
-```javascript
-const initialState = {
-  questions: [
-    { id: 1, question: "Quelle est la capitale de la France ?", options: ["Paris", "Londres", "Berlin", "Rome"], correctAnswer: "Paris" },
-    { id: 2, question: "Combien font 5 × 6 ?", options: ["30", "25", "20", "35"], correctAnswer: "30" },
-    { id: 3, question: "Quel est le plus grand océan du monde ?", options: ["Pacifique", "Atlantique", "Arctique", "Indien"], correctAnswer: "Pacifique" },
-    { id: 4, question: "Qui a peint la Joconde ?", options: ["Vincent van Gogh", "Pablo Picasso", "Léonard de Vinci", "Claude Monet"], correctAnswer: "Léonard de Vinci" },
-    { id: 5, question: "Quelle planète est la plus proche du soleil ?", options: ["Mars", "Vénus", "Mercure", "Jupiter"], correctAnswer: "Mercure" },
-    { id: 6, question: "En quelle année a eu lieu la Révolution française ?", options: ["1776", "1789", "1804", "1815"], correctAnswer: "1789" },
-    { id: 7, question: "Quelle est la langue officielle du Brésil ?", options: ["Espagnol", "Portugais", "Français", "Anglais"], correctAnswer: "Portugais" },
-    { id: 8, question: "Quel est l'élément chimique représenté par le symbole O ?", options: ["Or", "Oxygène", "Osmium", "Hydrogène"], correctAnswer: "Oxygène" },
-    { id: 9, question: "Quelle est la devise nationale des États-Unis ?", options: ["E Pluribus Unum", "Liberté, Égalité, Fraternité", "In God We Trust", "Justice for All"], correctAnswer: "In God We Trust" },
-    { id: 10, question: "Quel animal est connu pour sa capacité à changer de couleur ?", options: ["Serpent", "Caméléon", "Pieuvre", "Tigre"], correctAnswer: "Caméléon" }
-  ],
-  currentQuestion: 0,
-  score: 0,
-  timeLeft: 30, // temps en secondes
-};
-```
-
-#### Reducer
-
-Implémentez un reducer pour gérer les actions suivantes :
-- **Enregistrer une réponse** : Comparez la réponse sélectionnée avec la bonne réponse et mettez à jour le score si elle est correcte.
-- **Passer à la question suivante** : Réinitialisez le chronomètre et chargez la prochaine question.
-- **Réinitialiser le quiz** : Remettez l'état à sa valeur initiale.
+## **Contexte**
+Vous allez développer une version interactive du célèbre jeu du Morpion (ou Tic-Tac-Toe) en React. Ce jeu permettra à deux joueurs de s'affronter et inclura un système d'historique pour garder en mémoire les parties jouées. Chaque joueur pourra consulter l'historique des parties et rejouer les coups pour revivre une partie spécifique.
 
 ---
 
-### 2. Chronomètre avec `useEffect`
-
-- Décrémentez le temps restant pour la question actuelle chaque seconde.
-- Si le temps atteint 0, passez automatiquement à la question suivante.
-- Nettoyez l'effet lorsque la question change.
-
----
-
-### 3. Interface utilisateur
-
-- Affichez la question actuelle avec ses options de réponse.
-- Montrez un compteur de temps dégressif.
-- Ajoutez des boutons interactifs pour sélectionner une réponse et passer à la question suivante.
-- Affichez un message de fin avec le score total une fois que toutes les questions ont été posées.
+## **Objectifs pédagogiques**
+- Utiliser **`useReducer`** pour gérer un état complexe (grille, joueur actif, résultats).
+- Implémenter **`useEffect`** pour sauvegarder l’historique dans le `localStorage`.
+- Appliquer le **ContextAPI** pour partager l’état du jeu et de l’historique entre les composants.
 
 ---
 
-### Bonus
+## **Instructions**
 
-- Contextualisé vos données avec contextAPI
-- Ajoutez des styles pour rendre l'application plus attrayante.
-- Proposez un bouton permettant de redémarrer le quiz.
+### **1. Fonctionnalités du jeu de base**
+- Implémentez une grille de 3x3 pour le jeu du morpion.
+- Permettez à deux joueurs de jouer alternativement (Joueur X et Joueur O).
+- Détectez les conditions de victoire (ligne, colonne, diagonale) ou d'égalité.
+- Réinitialisez la grille à la fin de chaque partie.
+
+### **2. Gestion de l’historique**
+- Ajoutez une fonctionnalité qui enregistre chaque partie jouée dans un historique. Une entrée dans l’historique doit inclure :
+    - La séquence des coups joués.
+    - Le résultat (victoire de X, victoire de O, égalité).
+    - La date et l’heure de la partie.
+- Permettez à l’utilisateur de consulter l’historique et de cliquer sur une partie pour voir les coups joués étape par étape (replay).
+
+### **3. Sauvegarde de l’historique**
+- Persistez l’historique des parties dans le `localStorage` afin qu’il reste disponible après le rechargement de la page. Utilisez **`useEffect`** pour synchroniser l’historique avec le stockage local.
+
+### **4. Architecture et composants**
+Votre application doit inclure au moins les composants suivants :
+- **GameBoard** : Affiche la grille et gère les actions de jeu.
+- **History** : Affiche l’historique des parties avec la possibilité de revoir les coups.
+- **Header** : Indique le joueur actif ou le résultat de la partie en cours.
+- **ContextAPI** : Implémentez un contexte global pour partager l’état du jeu et de l’historique entre les composants.
+
+---
+
+## **Bonus (facultatif)**
+- Ajoutez un bouton "Annuler le dernier coup" pour revenir à l’état précédent pendant une partie en cours.
+- Permettez aux joueurs de définir leurs noms avant de commencer une partie.
+- Intégrez une interface esthétique avec des animations pour rendre le jeu plus ludique.
+
+---
+
+## **Livrables attendus**
+- Une application React fonctionnelle avec les fonctionnalités décrites.
+- Un code bien structuré, modulable et commenté.
+- Une utilisation efficace de `useReducer`, `useEffect` et le `ContextAPI`.
+
+---
+
+
+## **Astuce**
+Concentrez-vous sur la logique du jeu avant d’ajouter l’historique. Travaillez par itérations pour ajouter les fonctionnalités progressivement.
