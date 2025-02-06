@@ -1,0 +1,38 @@
+.QtyButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+
+    & button {
+        position: static;
+        cursor: pointer;
+    }
+
+    & .minus {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    & .plus {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    & .delete {
+        background-color: #ff0000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        &:hover {
+            background-color: #ff3333;
+        }
+    }
+}
