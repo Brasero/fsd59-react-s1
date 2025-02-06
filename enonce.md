@@ -1,78 +1,68 @@
-# Exercice : Simulateur de panier d'achat avec promotions
+# Projet : Gestionnaire de dépenses personnelles
 
-## Objectif
-Créer une application de simulateur de panier d'achat où les utilisateurs peuvent ajouter des produits au panier, ajuster les quantités et bénéficier de promotions selon le total.
+### Description du projet
+Le projet consiste à créer une application de gestion des dépenses personnelles, où les utilisateurs peuvent enregistrer leurs dépenses et obtenir une vue d'ensemble de leurs dépenses totale et par catégorie. L'application utilisera `useReducer` et `Context API (optionnel)` pour gérer l'état global de l'application.
 
----
+### Fonctionnalités principales
+1. Ajout d'une dépense avec un montant, un label et une catégorie.
+2. Possibilité de supprimer une dépense enregistrée.
+3. Affichage de la liste des dépenses enregistrées avec les détails correspondants.
+4. Calcul du total des dépenses et detail en fonction des categories.
 
-## Consignes détaillées
+### Exigences techniques
+- Utiliser React.js comme framework de développement.
+- Utiliser `useReducer` et `Context API` > `(optionnel)` pour gérer l'état global de l'application.
+- Utiliser des composants fonctionnels pour créer l'interface utilisateur.
+- Utiliser CSS ou un framework de votre choix pour le style et la mise en page de l'application.
 
-### 1. Mise en place du `CartContext`
-- Créez un contexte React pour gérer le panier et exposez les fonctions nécessaires à l'ajout, la suppression et la modification de produits.
-- Le contexte utilisera `useReducer` pour la gestion d'état.
+### Points de notation
+- Ajout et suppression d'une dépense (4 points) : L'utilisateur peut ajouter une dépense avec un montant et une catégorie.
+- Affichage des dépenses (3 points) : Les dépenses enregistrées sont affichées avec leurs détails correspondants.
+- Calcul du total des dépenses et par catégorie (5 points) : Le total des dépenses mensuelles est calculé et affiché.
+>P.S. : pensez à la methode de tableau `reduce`
+- Interface utilisateur conviviale et attrayante (3 points) : L'application possède une interface utilisateur intuitive, esthétique et facile à utiliser.
 
-#### État initial du panier
-L'état initial du panier doit inclure :
-- Une liste vide pour les articles ajoutés au panier.
-- Un total initial de 0.
-- Une réduction initiale de 0.
+### Liste de catégories
+1. Alimentation
+2. Logement
+3. Transport
+4. Divertissement
+5. Santé
+6. Éducation
+7. Autres
 
-#### Actions à implémenter
-- **Ajouter au panier** : Ajouter un produit avec ses informations (nom, image, prix, quantité).
-- **Supprimer du panier** : Retirer un produit du panier.
-- **Modifier la quantité** : Mettre à jour la quantité d'un produit spécifique.
-- **Calculer le total** : Calculer le total du panier et appliquer une réduction de 10 % si le total dépasse 100€.
+````js
+// Pour les catégorie vous aurez besoin d'un input de type select en voici un qu'il 
+// suffira d'aptapter
+// Ce select est ici gerer avec un useState pour l'exemple, vous devrez le gerer avec un reducer
 
----
+const SelectInput = () => {
+ 
+ const [state, setState] = useState("")
+ 
+ const handleChange = (e) => {
+  const {value} = e.target
+  setState(value)
+ }
+ 
+ return (
+  <>
+   <select value={state} onChange={handleChange}>
+    <option value={""}>---</option>
+    {
+     // afficher vos options ici
+    }
+   </select>
+  </>
+ )
+ 
+}
 
-### 2. Structure de l'application
+````
 
-#### Pages principales
-- **Page des produits** : Affichez une liste de produits disponibles avec leurs images, noms et prix. Chaque produit doit avoir un bouton "Ajouter au panier".
-- **Page du panier** : Affichez les produits ajoutés au panier avec leurs quantités et leur prix total. Permettez de modifier les quantités ou de retirer des produits.
+### Note finale
+La note finale sur 20 sera calculée en fonction du nombre total de points obtenus sur les 15 points possibles.
 
-#### Gestion des données globales
-Utilisez `CartContext` pour partager les données du panier entre les composants. Assurez-vous que les fonctions nécessaires (ajout, suppression, modification) sont accessibles via ce contexte.
+N'oubliez pas de planifier votre projet, de répartir les tâches entre les développeurs, de collaborer efficacement et de tester régulièrement votre application tout au long du processus de développement.
 
----
-
-### 3. Liste des produits à afficher
-Voici une liste de produits fictifs avec des images obtenues via l'API [Lorem Picsum](https://picsum.photos) pour illustrer :
-
-| ID  | Produit               | Prix (€) | Image                              |
-|-----|-----------------------|----------|------------------------------------|
-| 1   | Montre de luxe        | 120      | https://picsum.photos/200?random=1 |
-| 2   | Sac à dos             | 80       | https://picsum.photos/200?random=2 |
-| 3   | Casque audio          | 150      | https://picsum.photos/200?random=3 |
-| 4   | Smartphone            | 600      | https://picsum.photos/200?random=4 |
-| 5   | Chaussures de sport   | 90       | https://picsum.photos/200?random=5 |
-
----
-
-### 4. Fonctionnalités principales
-
-#### Page des produits
-- Affichez une grille contenant les informations suivantes pour chaque produit :
-    - Une image illustrative.
-    - Le nom du produit.
-    - Le prix.
-    - Un bouton "Ajouter au panier".
-
-#### Page du panier
-- Listez tous les produits ajoutés au panier avec :
-    - L'image du produit.
-    - Le nom du produit.
-    - Le prix unitaire.
-    - La quantité sélectionnée (modifiable).
-    - Le prix total pour chaque produit (prix unitaire × quantité).
-
-- Affichez le **total général** et la **réduction appliquée** (si applicable).
-- Ajoutez des boutons permettant de modifier les quantités ou de supprimer des produits.
-
----
-
-### Bonus
-- Ajoutez des styles pour rendre l'application plus attrayante.
-- Intégrez des animations pour les interactions avec le panier (ajout, suppression).
-- Ajoutez une validation pour empêcher les quantités négatives.
-- Permettez de filtrer les produits sur la page principale (par prix, nom, etc.).
+## Bonne chance et amusez-vous bien !
